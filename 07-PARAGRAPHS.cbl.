@@ -1,0 +1,43 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. PARAGRAPH-DEMO.
+
+       ENVIRONMENT DIVISION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01  WS-ITEM-NAME  PIC X(15).
+       01  WS-PRICE      PIC 9(05)V99.
+       01  WS-TAX        PIC 9(05)V99.
+       01  WS-TOTAL      PIC 9(06)V99.
+
+       PROCEDURE DIVISION.
+       000-MAIN-LOGIC.
+           PERFORM 100-DISPLAY-HEADER.
+           PERFORM 200-GET-USER-INPUT.
+           PERFORM 300-CALCULATE-TOTAL.
+           PERFORM 400-DISPLAY-RECEIPT.
+           DISPLAY "PROGRAM COMPLETED SUCCESSFULLY.".
+           STOP RUN.
+
+       100-DISPLAY-HEADER.
+           DISPLAY "==========================================".
+           DISPLAY "        STORE STORE CHECKOUT SYSTEM       ".
+           DISPLAY "==========================================".
+
+       200-GET-USER-INPUT.
+           DISPLAY "ENTER ITEM NAME : ".
+           ACCEPT WS-ITEM-NAME.
+           DISPLAY "ENTER ITEM PRICE: ".
+           ACCEPT WS-PRICE.
+
+       300-CALCULATE-TOTAL.
+           COMPUTE WS-TAX = WS-PRICE * 0.12.
+           COMPUTE WS-TOTAL = WS-PRICE + WS-TAX.
+
+       400-DISPLAY-RECEIPT.
+           DISPLAY "------------------------------------------".
+           DISPLAY "ITEM       : " WS-ITEM-NAME.
+           DISPLAY "BASE PRICE : $" WS-PRICE.
+           DISPLAY "TAX (12%)  : $" WS-TAX.
+           DISPLAY "TOTAL COST : $" WS-TOTAL.
+           DISPLAY "==========================================".
